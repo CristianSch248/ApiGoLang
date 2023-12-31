@@ -3,7 +3,6 @@ package handlers
 import (
 	"apiGo/models"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -12,8 +11,6 @@ import (
 )
 
 func Get(w http.ResponseWriter, r *http.Request) {
-
-	fmt.Printf(r)
 
 	// O ID vem da requisição com string,
 	// e para poder ser usado é feito um parse para inteiro
