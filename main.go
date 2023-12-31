@@ -23,5 +23,11 @@ func main() {
 	route.Get("/", handlers.List)
 	route.Get("/{id}", handlers.Get)
 
-	http.ListenAndServe(fmt.Sprintf(":%s", configs.GetServerPort()), route)
+	serverAddr := fmt.Sprintf(":%s", configs.GetServerPort())
+	fmt.Printf("Servidor escutando em http://localhost%s\n", serverAddr)
+
+	err = http.ListenAndServe(serverAddr, route)
+	if err != nil {
+		panic(err)
+	}
 }
