@@ -1,26 +1,27 @@
 package db
 
 import (
-    "database/sql"
-    "fmt"
+	"database/sql"
+	"fmt"
 
-    "apiGo/configs"
-    _ "github.com/lib/pq"
+	"apiGo/configs"
+
+	_ "github.com/lib/pq"
 )
 
-func OpenConn() (*sql.DB, error){
-    conf := configs.GetDB
+func OpenConn() (*sql.DB, error) {
+	conf := configs.GetDB()
 
-    // sc = string de conexão
-    sc := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable"
-        conf.Host, conf.port, conf.User, conf.Pass, conf.Database)
+	// sc = string de conexão
+	sc := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+		conf.Host, conf.Port, conf.User, conf.Pass, conf.Database)
 
-    conn, err := sql.Open("postgres", sc)
-    if err != nil {
-        panic(err)
-    }
+	conn, err := sql.Open("postgres", sc)
+	if err != nil {
+		panic(err)
+	}
 
-    err = conn.Ping()
+	err = conn.Ping()
 
-    return conn, err
+	return conn, err
 }
